@@ -14,11 +14,16 @@ public class MU_Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		MuPlayerControls();
+		MU_PlayerControls();
 	
 	}
 	
-	public void MuPlayerControls(){
+	void OnTriggerEnter2D(Collider2D collider){
+		Debug.Log (collider);	
+	}
+	
+	//Check the keyboard for player input.
+	public void MU_PlayerControls(){
 		//Left
 		if (Input.GetKey(KeyCode.A)){
 			mu_rigid.AddForce(new Vector2(-mu_moveSpeed,0f),ForceMode2D.Force);			
@@ -37,5 +42,9 @@ public class MU_Player : MonoBehaviour {
 			mu_rigid.AddForce(new Vector2(0f,-mu_moveSpeed),ForceMode2D.Force);
 		}
 		//Space
+		
+		Vector3 mu_playerTransform = transform.position;
+		mu_playerTransform.y = Mathf.Clamp (mu_playerTransform.y,-2,4);
+		transform.position = mu_playerTransform;
 	}
 }
