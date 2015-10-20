@@ -16,7 +16,7 @@ public class MU_Camera : MonoBehaviour {
 		Vector3 mu_pos = transform.position;
 		
 		mu_pos.x = mu_playerTransform.position.x;
-		mu_pos.y = Mathf.Clamp(mu_playerTransform.position.y,-1,4);
+		mu_pos.y = Mathf.Clamp(mu_playerTransform.position.y,-3,8); //Limit the Y movement.
 		
 		transform.position = Vector3.Lerp (transform.position, mu_pos, mu_cameraSpeed * Time.deltaTime);
 	}

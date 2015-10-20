@@ -43,6 +43,8 @@ public class MU_Player : MonoBehaviour {
 		}
 		//Space
 		
+		//Limit the Y movement of the player to certain parameters.
+		//Move to separate function later?
 		Vector3 mu_playerTransform = transform.position;
 		mu_playerTransform.y = Mathf.Clamp (mu_playerTransform.y,-2,4);
 		transform.position = mu_playerTransform;
