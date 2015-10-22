@@ -22,3 +22,15 @@ mu_ScriptName
 const int ss_CONSTANT_NAME = 7;
 glob_globalVar
 ```
+
+emails of all contributors:
+
+Mason: mwilliam09@gmail.com
+
+Dax: limeside@gmail.com
+
+Michael: gonzalez.a.michael@gmail.com
+
+Zach: zach_m65@yahoo.com
+
+Erik: erik.tarasenko@gmail.com
