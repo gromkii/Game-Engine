@@ -2,13 +2,15 @@
 Repository Containing the Group Minigame Project
 
 ### Due Dates:
-- [ ] Design Document (DRAFT)
+
+- [x] Design Document (DRAFT)
   - Due 10/18/2015 @ 11:55pm
-      - High Concept
-      - Target Audience
-      - Target Platform
-      - Background Story
-      - Gameplay
+
+- [x] Asset List Spreadsheet
+  - Due 10/20/2015 @ 11:55pm
+
+- [ ] Prototype of Level
+  - Due 10/25/2015 @ 11:55pm
 
 ### Coding Practices
 - camelCasing for all variables
