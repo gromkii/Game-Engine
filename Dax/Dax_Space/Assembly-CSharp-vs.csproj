@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MU_TextDebug.cs" />
      <Compile Include="Assets\mu_Scripts\MU_Camera.cs" />
      <Compile Include="Assets\mu_Scripts\MU_Player.cs" />
  <Reference Include="UnityEngine.UI">
