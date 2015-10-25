@@ -4,7 +4,8 @@
  * Fall 2015
  * MonoDevelop - Unity 5.1.2f1(64-bit))
 This class will be an Added Component to Player GameObject for programming Player;'s control 
-movement with the keyboard.
+movement with the keyboard. this will also add trigger event when player collides with enemy 
+fire and enemy ships.
  */
 
 using UnityEngine;
@@ -15,6 +16,7 @@ public class ss_PlayerControl : MonoBehaviour {
 	public GameObject GO_TestPlayerBullet;//This is our player's bullet prefab.
 	public GameObject BulletPosition01;
 	public GameObject BulletPosition02;
+	public GameObject GO_Explosion; //This is our Explosion Prefab. 
 
 	public float ss_speed;
 	// Use this for initialization
@@ -81,6 +83,27 @@ public class ss_PlayerControl : MonoBehaviour {
 		transform.position = pos;
 	}
 
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		//Detect coliision of the  playership with an enemyship, or with an enemy bullet
+		if((col.tag== "EnemyShipTag")||(col.tag == "EnemyBulletTag"))
+		{	//Call this function whenever player gets collided with enemy ships or fire.
+			PlayExplosion();
 
+			//!!for testing purposes Temp. comment the line below.!!!!!
+			Destroy(gameObject); //Destroy the player's ship.
+		}
+	}
+
+	//Function to Instantiate of the Explosion.
+	void PlayExplosion()
+	{	//Set the position of the Explosion animation.
+		GameObject explosion = (GameObject)Instantiate(GO_Explosion);
+
+		explosion.transform.position = transform.position;
+
+		//to test the sprite instant destroy after.
+		//Destroy(explosion);
+	}
 
 }

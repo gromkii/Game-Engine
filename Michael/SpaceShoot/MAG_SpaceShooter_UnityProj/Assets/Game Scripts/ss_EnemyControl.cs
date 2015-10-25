@@ -11,6 +11,8 @@ using System.Collections;
 
 public class ss_EnemyControl : MonoBehaviour {
 
+	public GameObject GO_Explosion; //This is our Explosion Prefab.
+
 	float ss_speed; //for the enemy speed.
 
 	// Use this for initialization
@@ -41,4 +43,27 @@ public class ss_EnemyControl : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		//Detect coliision of the  enemyship with an playership, or with an players bullet
+		if((col.tag== "PlayerShipTag")||(col.tag == "PlayerBulletTag"))
+		{	PlayExplosion();
+
+			//for testing purposes Temp. comment the line below.
+			Destroy(gameObject); //Destroy the Enemies' ship.
+		}
+	}
+
+	//Function to Instantiate of the Explosion.
+	void PlayExplosion()
+	{	//Set the position of the Explosion animation.
+		GameObject explosion = (GameObject)Instantiate(GO_Explosion);
+		
+		explosion.transform.position = transform.position;
+
+		//to test the sprite instant destroy after.
+		//Destroy(explosion);
+	}
+
 }

@@ -48,7 +48,10 @@
   <ItemGroup>
      <Compile Include="Assets\Game Scripts\GameManager.cs" />
      <Compile Include="Assets\Game Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Game Scripts\ss_Destroyer.cs" />
+     <Compile Include="Assets\Game Scripts\ss_EnemyBullet.cs" />
      <Compile Include="Assets\Game Scripts\ss_EnemyControl.cs" />
+     <Compile Include="Assets\Game Scripts\ss_EnemyGun.cs" />
      <Compile Include="Assets\Game Scripts\ss_EnemySpawner.cs" />
      <Compile Include="Assets\Game Scripts\ss_PlayerBullet.cs" />
      <Compile Include="Assets\Game Scripts\ss_PlayerControl.cs" />
