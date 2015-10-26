@@ -9,16 +9,35 @@ fire and enemy ships.
  */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ss_PlayerControl : MonoBehaviour {
+
+	public GameObject GO_GameManager; //Reference to our game manager.
 
 	public GameObject GO_TestPlayerBullet;//This is our player's bullet prefab.
 	public GameObject BulletPosition01;
 	public GameObject BulletPosition02;
 	public GameObject GO_Explosion; //This is our Explosion Prefab. 
 
+	//Reference to the lives UI Text
+	public Text TextLives;
+
+
+	const int MaxLives = 3; //control of player's Max Lives during gameplay.
+	int lives; // Current player lives.
+
 	public float ss_speed;
+
+	public void Init(){
+		lives = MaxLives;
+		//Update the TextLives UI. 
+		TextLives.text = lives.ToString();
+		//Set this player game object to active.
+		gameObject.SetActive(true);
+	}
+
 	// Use this for initialization
 	void Start () {
 	
@@ -90,8 +109,21 @@ public class ss_PlayerControl : MonoBehaviour {
 		{	//Call this function whenever player gets collided with enemy ships or fire.
 			PlayExplosion();
 
+			lives--;//Subtract one live each time playership gets killed.
+			//Update the TextLives UI. 
+			TextLives.text = lives.ToString();
+
+			if(lives == 0)//If our plaer is dead.
+			{
 			//!!for testing purposes Temp. comment the line below.!!!!!
-			Destroy(gameObject); //Destroy the player's ship.
+			//Destroy(gameObject); //Destroy the player's ship.
+
+			//***Change game manager state to game over state.***
+		GO_GameManager.GetComponent<ss_GameManager>().SetGameManagerState(ss_GameManager.GameManagerState.GameOver);
+
+			//Hide the player's ship.
+			gameObject.SetActive(false);
+			}
 		}
 	}
 

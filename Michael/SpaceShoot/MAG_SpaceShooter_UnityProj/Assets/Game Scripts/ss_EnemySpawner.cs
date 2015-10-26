@@ -10,11 +10,7 @@ public class ss_EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//start to spawn the enemy once in 5 seconds and that is it.
-		Invoke ("SpawnEnemy", maxSpawnRateinSeconds);
-
-		//Increase spawn  rate every 30 seconds.
-		InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+	
 
 	}
 	
@@ -68,4 +64,20 @@ left and right edge of the screen.
 			CancelInvoke("IncreaseSpawnRAte");
 	}
 
+	//Function to start enemy spawner.
+	public void ScheduledEnemySpawner()
+	{
+		//start to spawn the enemy once in 5 seconds and that is it.
+		Invoke ("SpawnEnemy", maxSpawnRateinSeconds);
+		
+		//Increase spawn  rate every 30 seconds.
+		InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+	}
+
+	//Function to stop enemy spawner.
+	public void UnscheduledEnemySpawner()
+	{
+		CancelInvoke("SpawnEnemy");
+		CancelInvoke("IncreaseSpawnRAte");
+	}
 }
