@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Ss_ game manager.
+/// This class is a control flow construct of when the game is active an not active, and works by having the player click on the play the minigame 
+/// and the enemy spawner does not kick in until the player clicks ploay and then a 5 second wait time begins. 
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class ss_GameManager : MonoBehaviour {

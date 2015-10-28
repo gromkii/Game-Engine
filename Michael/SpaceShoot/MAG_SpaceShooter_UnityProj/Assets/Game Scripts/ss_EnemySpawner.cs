@@ -1,12 +1,17 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Ss_ enemy spawner.
+/// works as a enemy spawner control class by setting up the time spawn of each enemy and the enemy will fly out vertically above the screen shotting the player and the
+/// spawning does not start until player clicks the play button and kicks in after a 'n' seconds.
+/// </summary>
+using UnityEngine;
 using System.Collections;
 
 public class ss_EnemySpawner : MonoBehaviour {
 
 	public GameObject GO_Enemy;  //This is our enemy prefab.
 
-	// this will be used for spawn control an Enemy every 5 seconds.
-	float maxSpawnRateinSeconds = 5f; 
+	// this will be used for spawn control an Enemy every 'n' seconds.
+	float maxSpawnRateinSeconds = 3f; 
 
 	// Use this for initialization
 	void Start () {
@@ -28,13 +33,14 @@ left and right edge of the screen.
 	void SpawnEnemy()
 	{
 		// This is the bottom-left point of the screen.
-		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0,0)); 
+		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0,0)); //0,0 
 		// This is the Top-Right point of the screen.
-		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1,1)); 
+		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1,1)); //1,1
 
-		//Instantiate an enemy.
+		//Instantiate an enemy. this is used for spawning directions.
 		GameObject anEnemy = (GameObject)Instantiate (GO_Enemy);
-		anEnemy.transform.position = new Vector2 (Random.Range (min.x, max.x), max.y);
+		anEnemy.transform.position = new Vector2 (max.x, Random.Range(min.y, max.y)); //this is used for vertcal spawning directions.
+		//anEnemy.transform.position = new Vector2 (Random.Range(min.x, max.x), max.y) //This is used for Horizontal Directions 
 
 		//Schedule when to spawn next enemy.
 		ScheduleNextEnemySpawn();
@@ -61,23 +67,23 @@ left and right edge of the screen.
 			maxSpawnRateinSeconds--;
 
 		if(maxSpawnRateinSeconds == 1f)
-			CancelInvoke("IncreaseSpawnRAte");
+			CancelInvoke("IncreaseSpawnRate");
 	}
 
 	//Function to start enemy spawner.
 	public void ScheduledEnemySpawner()
 	{
-		//start to spawn the enemy once in 5 seconds and that is it.
+		//start to spawn the enemy once in 'n' seconds and that is it.
 		Invoke ("SpawnEnemy", maxSpawnRateinSeconds);
 		
-		//Increase spawn  rate every 30 seconds.
-		InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+		//Increase spawn  rate every 'n' seconds.
+		InvokeRepeating("IncreaseSpawnRate", 0f, 5f);
 	}
 
 	//Function to stop enemy spawner.
 	public void UnscheduledEnemySpawner()
 	{
 		CancelInvoke("SpawnEnemy");
-		CancelInvoke("IncreaseSpawnRAte");
+		CancelInvoke("IncreaseSpawnRate");
 	}
 }

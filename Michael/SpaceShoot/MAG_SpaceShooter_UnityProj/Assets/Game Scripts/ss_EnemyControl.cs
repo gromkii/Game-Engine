@@ -28,14 +28,14 @@ public class ss_EnemyControl : MonoBehaviour {
 		//Get the enemy current position
 		Vector2 position = transform.position;
 
-		//Compute the enemy new postion.
-		position = new Vector2 (position.x, position.y - ss_speed * Time.deltaTime);
+		//Compute the enemy new postion. ( - ss_speed * Time.deltaTime)
+		position = new Vector2 (position.x - ss_speed * Time.deltaTime, position.y);//sommat like dat
 
 		//Update the enemy postion.
 		transform.position = position;
 
 		//This is the bottom-left point of the screen.
-		Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+		Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0,0)); //0,0
 
 		//If the enemy went outside the screen  on the bottom, then destroy the enemy.
 		if(transform.position.y < min.y)
