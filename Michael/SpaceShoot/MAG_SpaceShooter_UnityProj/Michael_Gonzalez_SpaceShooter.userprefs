@@ -1,12 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Scripts\ss_PlayerBullet.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Bullet.cs">
     <Files>
-      <File FileName="Assets\Game Scripts\ss_PlayerControl.cs" Line="28" Column="23" />
-      <File FileName="Assets\Game Scripts\ss_PlayerBullet.cs" Line="31" Column="53" />
-      <File FileName="Assets\Game Scripts\ss_EnemyBullet.cs" Line="25" Column="27" />
-      <File FileName="Assets\Game Scripts\ss_EnemyControl.cs" Line="32" Column="96" />
-      <File FileName="Assets\Game Scripts\ss_EnemySpawner.cs" Line="80" Column="45" />
+      <File FileName="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Bullet.cs" Line="13" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

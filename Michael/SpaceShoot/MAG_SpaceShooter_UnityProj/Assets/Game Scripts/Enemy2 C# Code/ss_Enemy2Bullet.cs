@@ -2,27 +2,34 @@
 using UnityEngine;
 using System.Collections;
 
-public class ss_EnemyBullet : MonoBehaviour {
+public class ss_Enemy2Bullet : MonoBehaviour {
 
-	float speed; //bullet speed for this enemy bullet.
+	float ss_speed; //bullet speed for this enemy bullet.
 	Vector2 _direction; //the direction of the enemy bullet
 	bool isReady; //to know when the bullet direction is set.
 
-	void Awake(){
-		speed = 5f;
+	void Awake()
+	{
+		ss_speed = 10f;
 		isReady = false;
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 
 	//Function to set the bullet's direction 
 	public void SetDirection(Vector2 direction)
 	{
+		//This code piece will shoot straight towards the left side of the screen W/O having to shoot directly at player *** CODING for Second Enemy Gameobject and bullets.
+		//I used the code that is oppisite of Player's bullet class functions, that instead of shooting the bullet at the right it shoots to the LEFT.
+		// _direction = new Vector2 (_direction.x + ss_speed * (-Time.deltaTime), _direction.y );
+
+		//This will allow the bullet to target shoot at playership's position on game screen.
 		//set the direction normalized, to get an unit vector.
-		_direction = direction.normalized; 
+		 _direction = direction.normalized; 
 
 		isReady = true; //set flag to true.
 	}
@@ -35,7 +42,7 @@ public class ss_EnemyBullet : MonoBehaviour {
 			Vector2 position = transform.position;
 
 			//compute the bullet's new position.
-			position += _direction * speed * Time.deltaTime;
+			position += _direction * ss_speed * Time.deltaTime;
 
 			//update the bullet's postion.
 			transform.position = position;
@@ -43,10 +50,10 @@ public class ss_EnemyBullet : MonoBehaviour {
 /*Next we nee to remove the bullet from our game
 if the bullet goes outside the game screen. */
 
-	//this is the bottom-left point of the screen.
+	//this is the Bottom-Left point of the screen.
 	Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0,0));
 
-	//this is the bottom-left point of the screen.
+	//this is the Top_Right point of the screen.
 	Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1,1));
 
 	//if the bullet goes outside the screen, then  destroy it.

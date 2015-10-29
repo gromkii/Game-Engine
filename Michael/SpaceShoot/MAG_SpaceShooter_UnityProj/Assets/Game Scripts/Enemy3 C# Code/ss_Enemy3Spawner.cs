@@ -6,9 +6,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class ss_EnemySpawner : MonoBehaviour {
+public class ss_Enemy3Spawner : MonoBehaviour {
 
-	public GameObject GO_Enemy;  //This is our enemy prefab.
+	public GameObject GO_Enemy3;  //This is our enemy prefab.
 
 	// this will be used for spawn control an Enemy every 'n' seconds.
 	float maxSpawnRateinSeconds = 3f; 
@@ -38,9 +38,13 @@ left and right edge of the screen.
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1,1)); //1,1
 
 		//Instantiate an enemy. this is used for spawning directions.
-		GameObject anEnemy = (GameObject)Instantiate (GO_Enemy);
-		anEnemy.transform.position = new Vector2 (max.x, Random.Range(min.y, max.y)); //this is used for vertcal spawning directions.
-		//anEnemy.transform.position = new Vector2 (Random.Range(min.x, max.x), max.y) //This is used for Horizontal Directions 
+		GameObject anEnemy = (GameObject)Instantiate (GO_Enemy3);
+
+		//this is used for Horizontally spawning directions(from the Right to Left).
+		anEnemy.transform.position = new Vector2 (max.x, Random.Range(min.y, max.y)); 
+
+		//This is used for Vertically Directions(From the Top to Bottom).
+		//anEnemy.transform.position = new Vector2 (Random.Range(min.x, max.x), max.y)  
 
 		//Schedule when to spawn next enemy.
 		ScheduleNextEnemySpawn();

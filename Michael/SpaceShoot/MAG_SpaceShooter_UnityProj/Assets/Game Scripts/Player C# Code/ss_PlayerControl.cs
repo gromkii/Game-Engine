@@ -12,11 +12,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class ss_PlayerControl : MonoBehaviour {
+public class ss_PlayerControl : MonoBehaviour 
+{
 
 	public GameObject GO_GameManager; //Reference to our game manager.
 
-	public GameObject GO_TestPlayerBullet;//This is our player's bullet prefab.
+	public GameObject GO_PlayerBullet;//This is our player's bullet prefab.
 	public GameObject BulletPosition01;
 	public GameObject BulletPosition02;
 	public GameObject GO_Explosion; //This is our Explosion Prefab. 
@@ -25,12 +26,13 @@ public class ss_PlayerControl : MonoBehaviour {
 	public Text TextLives;
 
 
-	const int MaxLives = 3; //control of player's Max Lives during gameplay.
+	const int MaxLives = 5; //control of player's Max Lives during gameplay.
 	int lives; // Current player lives.
 
 	public float ss_speed;
 
-	public void Init(){
+	public void Init()
+	{
 		lives = MaxLives;
 		//Update the TextLives UI. 
 		TextLives.text = lives.ToString();
@@ -39,7 +41,8 @@ public class ss_PlayerControl : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
@@ -50,12 +53,14 @@ public class ss_PlayerControl : MonoBehaviour {
 		if(Input.GetKeyDown("space"))
 		{
 			//Instatiate the first bullet
-			GameObject bullet01 = (GameObject)Instantiate (GO_TestPlayerBullet);
+			GameObject bullet01 = (GameObject)Instantiate (GO_PlayerBullet);
+
 			//Set the bullet initial position.
 			bullet01.transform.position = BulletPosition01.transform.position;
 
 			//Instatiate the second bullet
-			GameObject bullet02 = (GameObject)Instantiate (GO_TestPlayerBullet);
+			GameObject bullet02 = (GameObject)Instantiate (GO_PlayerBullet);
+
 			//Set the bullet initial position.
 			bullet02.transform.position = BulletPosition02.transform.position;
 
@@ -63,6 +68,7 @@ public class ss_PlayerControl : MonoBehaviour {
 
 		//the value will be -1, 0 or 1 (for Left, no input, and Right)
 		float x = Input.GetAxisRaw("Horizontal");
+
 		//the value will be -1, 0 or 1 (for Down, no input, and Up)
 		float y = Input.GetAxisRaw("Vertical");
 
@@ -77,11 +83,12 @@ public class ss_PlayerControl : MonoBehaviour {
 	{
 		//Find the screen limits to the player's movment (left, right, top and bottom edges of the screen)
 		// This is the bottom-left corner of the screen.
-		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0,0)); 
+		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0,0));
+
 		// This is the Top-Right corner of the screen.
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1,1)); 
 
-		//Time of video 5:07
+
 		max.x = max.x - 0.225f;  //subtract the player sprite half width.
 		min.x = min.x + 0.225f;  //add the player sprite half width.
 
@@ -104,7 +111,7 @@ public class ss_PlayerControl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		//Detect coliision of the  playership with an enemyship, or with an enemy bullet
+		//Detects all coliision of the  playership with all enemyships, or with an enemies' bullet attacks!!
 		if((col.tag== "EnemyShipTag")||(col.tag == "EnemyBulletTag"))
 		{	//Call this function whenever player gets collided with enemy ships or fire.
 			PlayExplosion();
@@ -137,5 +144,4 @@ public class ss_PlayerControl : MonoBehaviour {
 		//to test the sprite instant destroy after.
 		//Destroy(explosion);
 	}
-
 }

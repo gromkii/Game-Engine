@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ss_EnemyGun : MonoBehaviour {
-	public GameObject GO_EnemyAttack; // this is our enemy bullet prefab.
+public class ss_Enemy2Gun : MonoBehaviour {
+	public GameObject GO_Enemy2Attack; // this is our enemy bullet prefab.
 	
 	// Use this for initialization
 	void Start () {
@@ -20,13 +20,13 @@ public class ss_EnemyGun : MonoBehaviour {
 	void FireEnemyBullet()
 	{
 		//get a reference to the player's ship.
-		GameObject playerShip = GameObject.Find("GO_TestPlayer");
+		GameObject playerShip = GameObject.Find("GO_Player");
 
 		//If the player is not destroyed.
 		if(playerShip != null)
 		{
 			//instantiate an enemy bullet.
-			GameObject bullet = (GameObject)Instantiate(GO_EnemyAttack);
+			GameObject bullet = (GameObject)Instantiate(GO_Enemy2Attack);
 
 			//set the bullet's initial position.
 			bullet.transform.position = transform.position;
@@ -35,7 +35,7 @@ public class ss_EnemyGun : MonoBehaviour {
 	Vector2 direction = playerShip.transform.position - bullet.transform.position;
 		
 			//set the bullet's direction.
-			bullet.GetComponent<ss_EnemyBullet>().SetDirection(direction);
+			bullet.GetComponent<ss_Enemy2Bullet>().SetDirection(direction);
 		
 		}
 	}

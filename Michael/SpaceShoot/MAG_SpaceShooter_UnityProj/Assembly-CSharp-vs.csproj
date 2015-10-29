@@ -46,15 +46,22 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Game Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Bullet.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Control.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Gun.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Spawner.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Bullet.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Control.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Gun.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Spawner.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy3 C# Code\ss_Enemy3Control.cs" />
+     <Compile Include="Assets\Game Scripts\Enemy3 C# Code\ss_Enemy3Spawner.cs" />
+     <Compile Include="Assets\Game Scripts\Not needed\GameManager.cs" />
+     <Compile Include="Assets\Game Scripts\Not needed\MainMenu.cs" />
+     <Compile Include="Assets\Game Scripts\Player C# Code\ss_PlayerBullet.cs" />
+     <Compile Include="Assets\Game Scripts\Player C# Code\ss_PlayerControl.cs" />
      <Compile Include="Assets\Game Scripts\ss_Destroyer.cs" />
-     <Compile Include="Assets\Game Scripts\ss_EnemyBullet.cs" />
-     <Compile Include="Assets\Game Scripts\ss_EnemyControl.cs" />
-     <Compile Include="Assets\Game Scripts\ss_EnemyGun.cs" />
-     <Compile Include="Assets\Game Scripts\ss_EnemySpawner.cs" />
      <Compile Include="Assets\Game Scripts\ss_GameManager.cs" />
-     <Compile Include="Assets\Game Scripts\ss_PlayerBullet.cs" />
-     <Compile Include="Assets\Game Scripts\ss_PlayerControl.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

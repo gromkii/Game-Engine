@@ -9,7 +9,7 @@ movement with the keyboard.
 using UnityEngine;
 using System.Collections;
 
-public class ss_EnemyControl : MonoBehaviour {
+public class ss_Enemy3Control : MonoBehaviour {
 
 	public GameObject GO_Explosion; //This is our Explosion Prefab.
 
@@ -18,7 +18,7 @@ public class ss_EnemyControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
-		ss_speed = 2f; // set speed
+		ss_speed = 3f; // set speed
 
 	}
 	
@@ -31,14 +31,16 @@ public class ss_EnemyControl : MonoBehaviour {
 		//Compute the enemy new postion. ( - ss_speed * Time.deltaTime)
 		position = new Vector2 (position.x - ss_speed * Time.deltaTime, position.y);//sommat like dat
 
-		//Update the enemy postion.
+		//Update the enemy postion. this will attack player with its body!!
 		transform.position = position;
 
 		//This is the bottom-left point of the screen.
 		Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0,0)); //0,0
 
-		//If the enemy went outside the screen  on the bottom, then destroy the enemy.
-		if(transform.position.y < min.y)
+		//If the enemy went outside the screen  on the bottom, then destroy the enemy. if(transform.position.y < min.y)
+
+		//If the enemy went outside the screen  on the LEFT side of screen, then destroy the enemy.
+		if(transform.position.x < min.x)
 		{
 			Destroy(gameObject);
 		}

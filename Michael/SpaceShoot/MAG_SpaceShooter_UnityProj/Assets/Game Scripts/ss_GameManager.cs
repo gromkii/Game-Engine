@@ -11,7 +11,12 @@ public class ss_GameManager : MonoBehaviour {
 
 	public GameObject playButton;
 	public GameObject playerShip;
-	public GameObject enemySpawner; // reference to our EnemySpawner. 
+
+	// references to our Enemies' Spawners. 
+	public GameObject enemy1Spawner;  
+	public GameObject enemy2Spawner;  
+	public GameObject enemy3Spawner;  
+
 	public GameObject GO_GameOver; // reference to the Game Over Screen image.
 
 	public enum GameManagerState
@@ -49,13 +54,17 @@ public class ss_GameManager : MonoBehaviour {
 		//Set the Player visible (active) and Initialize the player lives.
 			playerShip.GetComponent<ss_PlayerControl>().Init();
 
-			//Start enemy spawner
-			enemySpawner.GetComponent<ss_EnemySpawner>().ScheduledEnemySpawner();
+			//Starts for all 3 enemy spawners
+			enemy1Spawner.GetComponent<ss_Enemy1Spawner>().ScheduledEnemySpawner(); 
+			enemy2Spawner.GetComponent<ss_Enemy2Spawner>().ScheduledEnemySpawner(); 
+			enemy3Spawner.GetComponent<ss_Enemy3Spawner>().ScheduledEnemySpawner(); 
 
 			break;
 		case GameManagerState.GameOver:
-			//Stop enemy Spawner.
-			enemySpawner.GetComponent<ss_EnemySpawner>().UnscheduledEnemySpawner();
+			//Stops all 3 enemy Spawners .
+			enemy1Spawner.GetComponent<ss_Enemy1Spawner>().UnscheduledEnemySpawner();
+			enemy2Spawner.GetComponent<ss_Enemy2Spawner>().UnscheduledEnemySpawner();
+			enemy3Spawner.GetComponent<ss_Enemy3Spawner>().UnscheduledEnemySpawner();
 
 			//Display GameOver Screen.
 			GO_GameOver.SetActive(true);
