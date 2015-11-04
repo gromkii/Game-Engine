@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MU_TextDebug.cs" />
+     <Compile Include="Assets\mu_Scripts\MU_BoostSlider.cs" />
      <Compile Include="Assets\mu_Scripts\MU_Camera.cs" />
+     <Compile Include="Assets\mu_Scripts\MU_GoalSlider.cs" />
+     <Compile Include="Assets\mu_Scripts\MU_Pickup.cs" />
      <Compile Include="Assets\mu_Scripts\MU_Player.cs" />
+     <Compile Include="Assets\mu_Scripts\MU_TextDebug.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
