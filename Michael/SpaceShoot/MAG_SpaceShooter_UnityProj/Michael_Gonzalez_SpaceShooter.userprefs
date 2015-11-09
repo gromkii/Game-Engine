@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Scripts\ss_GameManager.cs">
+    <Files>
+      <File FileName="Assets\Game Scripts\ss_GameManager.cs" Line="59" Column="36" />
+      <File FileName="Assets\Game Scripts\ss_PlayerControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Game Scripts\ss_EnemySpawner.cs" Line="74" Column="49" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
