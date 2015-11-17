@@ -11,7 +11,7 @@ public class ss_Enemy2Spawner : MonoBehaviour {
 	public GameObject GO_Enemy2;  //This is our enemy prefab.
 
 	// this will be used for spawn control an Enemy every 'n' seconds.
-	float maxSpawnRateinSeconds = 3f; 
+	float maxSpawnRateinSeconds = 20f; 
 
 	// Use this for initialization
 	void Start () {
@@ -77,6 +77,9 @@ left and right edge of the screen.
 	//Function to start enemy spawner.
 	public void ScheduledEnemySpawner()
 	{
+		//reset spawning for all enemy 1.
+		maxSpawnRateinSeconds = 20f; 
+
 		//start to spawn the enemy once in 'n' seconds and that is it.
 		Invoke ("SpawnEnemy", maxSpawnRateinSeconds);
 		

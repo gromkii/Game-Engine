@@ -11,7 +11,10 @@ using System.Collections;
 
 public class ss_Enemy1Control : MonoBehaviour {
 
+	GameObject GO_ScoreUIText;
 	public GameObject GO_Explosion; //This is our Explosion Prefab.
+
+	public AudioClip[] audioClip; // references the SFX for the Enemy1 GameObject
 
 	float ss_speed; //for the enemy speed.
 
@@ -19,7 +22,8 @@ public class ss_Enemy1Control : MonoBehaviour {
 	void Start () {
 	
 		ss_speed = 2f; // set speed
-
+		//Get the Score Text UI
+		GO_ScoreUIText = GameObject.FindGameObjectWithTag ("ScoreTextTag");
 	}
 	
 	// Update is called once per frame
@@ -50,7 +54,15 @@ public class ss_Enemy1Control : MonoBehaviour {
 	{
 		//Detect coliision of the  enemyship with an playership, or with an players bullet
 		if((col.tag== "PlayerShipTag")||(col.tag == "PlayerBulletTag"))
-		{	PlayExplosion();
+		{	
+			//play the Explosion Sound Effect.
+			PlaySound(0);
+
+
+			PlayExplosion();
+
+			//add 100 Points to the Player's score! 
+			GO_ScoreUIText.GetComponent<ss_GameScore>().Score += 100;
 
 			//for testing purposes Temp. comment the line below.
 			Destroy(gameObject); //Destroy the Enemies' ship.
@@ -65,7 +77,14 @@ public class ss_Enemy1Control : MonoBehaviour {
 		explosion.transform.position = transform.position;
 
 		//to test the sprite instant destroy after.
-		//Destroy(explosion);
+		Destroy(explosion);
+	}
+
+	void PlaySound(int clip)
+	{
+		GetComponent<AudioSource>().clip = audioClip[clip];
+		GetComponent<AudioSource>().Play();
+		
 	}
 
 }

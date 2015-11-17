@@ -3,12 +3,15 @@ using System.Collections;
 
 public class ss_Enemy1Gun : MonoBehaviour {
 	public GameObject GO_Enemy1Attack; // this is our enemy bullet prefab.
-	
+	public AudioClip[] audioClip; // references the SFX for the player GameObject
+
 	// Use this for initialization
 	void Start () {
 	
 		//fire an enemy bullet after 1 second
 		Invoke("FireEnemyBullet", 1f);
+		//Enemy Laser sound
+		PlaySound (0);
 	}
 	
 	// Update is called once per frame
@@ -39,4 +42,12 @@ public class ss_Enemy1Gun : MonoBehaviour {
 		
 		}
 	}
+
+	void PlaySound(int clip)
+	{
+		GetComponent<AudioSource>().clip = audioClip[clip];
+		GetComponent<AudioSource>().Play();
+		
+	}
+
 }
