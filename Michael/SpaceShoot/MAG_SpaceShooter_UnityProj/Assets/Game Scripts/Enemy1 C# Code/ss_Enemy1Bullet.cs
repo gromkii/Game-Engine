@@ -8,21 +8,25 @@ public class ss_Enemy1Bullet : MonoBehaviour {
 	Vector2 _direction; //the direction of the enemy bullet
 	bool isReady; //to know when the bullet direction is set.
 
+
 	void Awake()
 	{
 		ss_speed = 15f;
 		isReady = false;
+	
 	}
 
 	// Use this for initialization
 	void Start () 
 	{
-	
+
+
 	}
 
 	//Function to set the bullet's direction 
 	public void SetDirection(Vector2 direction)
 	{
+
 		//This code piece will shoot straight towards the left side of the screen W/O having to shoot directly at player *** CODING for Second Enemy Gameobject and bullets.
 		//I used the code that is oppisite of Player's bullet class functions, that instead of shooting the bullet at the right it shoots to the LEFT.
 		 _direction = new Vector2 (_direction.x + ss_speed * (-Time.deltaTime), _direction.y );
@@ -36,6 +40,7 @@ public class ss_Enemy1Bullet : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+	
 	if(isReady)
 		{
 			//get the bullet's current position.
@@ -46,6 +51,7 @@ public class ss_Enemy1Bullet : MonoBehaviour {
 
 			//update the bullet's postion.
 			transform.position = position;
+		
 
 /*Next we nee to remove the bullet from our game
 if the bullet goes outside the game screen. */
@@ -73,6 +79,6 @@ if the bullet goes outside the game screen. */
 			Destroy(gameObject); //Destroy This Enemy's bullet.
 		}
 	}
-
+	
 
 }

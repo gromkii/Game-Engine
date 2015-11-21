@@ -12,6 +12,7 @@ using System.Collections;
 public class ss_Enemy2Control : MonoBehaviour {
 
 	public GameObject GO_Explosion; //This is our Explosion Prefab.
+	public AudioClip[] audioClip; // references the SFX for the Enemy2 GameObject
 
 	float ss_speed; //for the enemy speed.
 
@@ -52,6 +53,9 @@ public class ss_Enemy2Control : MonoBehaviour {
 		if((col.tag== "PlayerShipTag")||(col.tag == "PlayerBulletTag"))
 		{	PlayExplosion();
 
+			//play the Explosion Sound Effect.
+			PlaySound(0);
+
 			//for testing purposes Temp. comment the line below.
 			Destroy(gameObject); //Destroy the Enemies' ship.
 		}
@@ -65,7 +69,14 @@ public class ss_Enemy2Control : MonoBehaviour {
 		explosion.transform.position = transform.position;
 
 		//to test the sprite instant destroy after.
-		//Destroy(explosion);
+		Destroy(explosion);
+	}
+
+	void PlaySound(int clip)
+	{
+		GetComponent<AudioSource>().clip = audioClip[clip];
+		GetComponent<AudioSource>().Play();
+		
 	}
 
 }

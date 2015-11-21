@@ -8,6 +8,8 @@ public class MU_Player : MonoBehaviour {
 	//public Text mu_text;
 	
 	public float mu_moveSpeed;
+	public float mu_vertSpeed;
+	
 	public float mu_boostCount = 0;
 	
 	public bool mu_hasItem = false;
@@ -17,6 +19,8 @@ public class MU_Player : MonoBehaviour {
 	private MU_Camera mu_camera;
 	private bool mu_canBoost = true;
 	private Transform mu_goalTransform;
+	private Animator mu_anim;
+	private bool mu_facingRight;
 	
 	void Start () {
 		//Initialize private variables		
@@ -25,15 +29,19 @@ public class MU_Player : MonoBehaviour {
 		mu_goalSlider = FindObjectOfType<MU_GoalSlider>().GetComponent<Slider>();
 		mu_camera = FindObjectOfType<MU_Camera>();
 		mu_goalTransform = FindObjectOfType<MU_Pickup>().transform;
+		mu_anim = GetComponent<Animator>();
+		mu_facingRight = false;
 	}
 	
 	void Update () {
 		//Call control and UI functions.
+		//MU_ScaleCheck();
 		MU_PlayerControls();
 		if (mu_canBoost == true) {
 			MU_SpeedBoost();
 		}
 		MU_DistanceToGoal();
+		
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider){
@@ -47,22 +55,33 @@ public class MU_Player : MonoBehaviour {
 	public void MU_PlayerControls(){
 		//Left
 		if (Input.GetKey(KeyCode.A)){
-			mu_rigid.AddForce(new Vector2(-mu_moveSpeed,0f),ForceMode2D.Force);			
+			mu_rigid.AddForce(new Vector2(-mu_moveSpeed,0f),ForceMode2D.Force);	
+			if (mu_facingRight){
+				MU_Flip();
+			}		
 		}
 		//Right
 		if (Input.GetKey (KeyCode.D)){
 			mu_rigid.AddForce(new Vector2(mu_moveSpeed,0f),ForceMode2D.Force);
+			if (!mu_facingRight){
+				MU_Flip();
+			}
 		}
 		//Up
 		if (Input.GetKey (KeyCode.W)){
-			mu_rigid.AddForce(new Vector2(0f,mu_moveSpeed),ForceMode2D.Force);
+			mu_rigid.AddForce(new Vector2(0f,mu_vertSpeed),ForceMode2D.Force);
+			mu_anim.SetBool ("BoostUp", true);
+		} else {
+			mu_anim.SetBool ("BoostUp", false);
 		}
 		
 		//Down
 		if (Input.GetKey (KeyCode.S)){
-			mu_rigid.AddForce(new Vector2(0f,-mu_moveSpeed),ForceMode2D.Force);
+			mu_rigid.AddForce(new Vector2(0f,-mu_vertSpeed),ForceMode2D.Force);
+			mu_anim.SetBool ("BoostDown", true);
+		} else {
+			mu_anim.SetBool ("BoostDown", false);
 		}
-		
 		
 		
 		//Limit the Y movement of the player to certain parameters.
@@ -131,10 +150,19 @@ public class MU_Player : MonoBehaviour {
 	
 	public void MU_DistanceToGoal(){
 		//Position of Slider is relative to the distance to the pickup object.
-		if (mu_hasItem) {
-			mu_goalSlider.value = Vector3.Distance(transform.position,mu_goalTransform.position) * Time.deltaTime ;
+		if (!mu_hasItem) {
+			var mu_goalVector = Vector3.Distance(transform.position,mu_goalTransform.position)/100;
+			mu_goalSlider.value = mu_goalVector;
 		}
 		
+	}
+	
+	private void MU_Flip()
+	{
+		mu_facingRight = !mu_facingRight;
+		Vector3 theScale = transform.localScale;
+		theScale.x *= -1;
+		transform.localScale = theScale;
 	}
 	
 	

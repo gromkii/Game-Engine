@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Bullet.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Control.cs">
     <Files>
-      <File FileName="Assets\Game Scripts\Enemy2 C# Code\ss_Enemy2Bullet.cs" Line="13" Column="16" />
+      <File FileName="Assets\Game Scripts\Boss Cod\ss_Boss.cs" Line="4" Column="28" />
+      <File FileName="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Control.cs" Line="14" Column="5" />
+      <File FileName="Assets\Game Scripts\GameManager.cs" Line="79" Column="78" />
+      <File FileName="Assets\Game Scripts\Player C# Code\ss_PlayerControl.cs" Line="142" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

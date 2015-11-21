@@ -9,6 +9,7 @@ using System.Collections;
 public class ss_Enemy3Spawner : MonoBehaviour {
 
 	public GameObject GO_Enemy3;  //This is our enemy prefab.
+	public AudioClip[] audioClip; // references the SFX for the Enemy3 GameObject
 
 	// this will be used for spawn control an Enemy every 'n' seconds.
 	float maxSpawnRateinSeconds = 3f; 
@@ -77,6 +78,9 @@ left and right edge of the screen.
 	//Function to start enemy spawner.
 	public void ScheduledEnemySpawner()
 	{
+		//reset spawning for all enemy 1.
+		maxSpawnRateinSeconds = 30f; 
+
 		//start to spawn the enemy once in 'n' seconds and that is it.
 		Invoke ("SpawnEnemy", maxSpawnRateinSeconds);
 		
@@ -90,4 +94,5 @@ left and right edge of the screen.
 		CancelInvoke("SpawnEnemy");
 		CancelInvoke("IncreaseSpawnRate");
 	}
+	
 }

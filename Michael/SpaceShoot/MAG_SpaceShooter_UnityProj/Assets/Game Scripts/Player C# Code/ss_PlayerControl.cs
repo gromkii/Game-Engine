@@ -22,6 +22,8 @@ public class ss_PlayerControl : MonoBehaviour
 	public GameObject BulletPosition02;
 	public GameObject GO_Explosion; //This is our Explosion Prefab. 
 
+	public AudioClip[] audioClip; // references the SFX for the player GameObject
+
 	//Reference to the lives UI Text
 	public Text TextLives;
 
@@ -36,6 +38,13 @@ public class ss_PlayerControl : MonoBehaviour
 		lives = MaxLives;
 		//Update the TextLives UI. 
 		TextLives.text = lives.ToString();
+
+		//Resets the player position to the center of the screen.
+		//Whenever the player clicks play to start the game,
+		transform.position = new Vector2(0,0); 
+		//The player Gameobject will spawn at the center of the screen.
+
+
 		//Set this player game object to active.
 		gameObject.SetActive(true);
 	}
@@ -52,6 +61,9 @@ public class ss_PlayerControl : MonoBehaviour
 		//Fire bullets when the 'Spacebar' key is pressed.
 		if(Input.GetKeyDown("space"))
 		{
+			//play the laser Sound Effect.
+			PlaySound(0);
+
 			//Instatiate the first bullet
 			GameObject bullet01 = (GameObject)Instantiate (GO_PlayerBullet);
 
@@ -113,7 +125,11 @@ public class ss_PlayerControl : MonoBehaviour
 	{
 		//Detects all coliision of the  playership with all enemyships, or with an enemies' bullet attacks!!
 		if((col.tag== "EnemyShipTag")||(col.tag == "EnemyBulletTag"))
-		{	//Call this function whenever player gets collided with enemy ships or fire.
+		{	
+			//play the Explosion Sound Effect.
+			PlaySound(1);
+
+			//Call this function whenever player gets collided with enemy ships or fire.
 			PlayExplosion();
 
 			lives--;//Subtract one live each time playership gets killed.
@@ -123,10 +139,10 @@ public class ss_PlayerControl : MonoBehaviour
 			if(lives == 0)//If our plaer is dead.
 			{
 			//!!for testing purposes Temp. comment the line below.!!!!!
-			//Destroy(gameObject); //Destroy the player's ship.
+		//	Destroy(gameObject); //Destroy the player's ship.
 
 			//***Change game manager state to game over state.***
-		GO_GameManager.GetComponent<ss_GameManager>().SetGameManagerState(ss_GameManager.GameManagerState.GameOver);
+		GO_GameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.GameOver);
 
 			//Hide the player's ship.
 			gameObject.SetActive(false);
@@ -136,12 +152,23 @@ public class ss_PlayerControl : MonoBehaviour
 
 	//Function to Instantiate of the Explosion.
 	void PlayExplosion()
-	{	//Set the position of the Explosion animation.
+	{	
+
+
+
+		//Set the position of the Explosion animation.
 		GameObject explosion = (GameObject)Instantiate(GO_Explosion);
 
 		explosion.transform.position = transform.position;
 
 		//to test the sprite instant destroy after.
 		//Destroy(explosion);
+	}
+
+	void PlaySound(int clip)
+	{
+		GetComponent<AudioSource>().clip = audioClip[clip];
+		GetComponent<AudioSource>().Play();
+	
 	}
 }
