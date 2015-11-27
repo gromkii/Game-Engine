@@ -17,8 +17,14 @@ public class GameManager : MonoBehaviour {
 	public GameObject enemy1Spawner;  
 	public GameObject enemy2Spawner;  
 	public GameObject enemy3Spawner;  
-	// reference to the Game Over Screen image.
+	// reference to the Game Over Sprite image.
 	public GameObject GameOver; 
+
+	// reference to the Winner Sprite image.
+	public GameObject Winner;
+
+	public GameObject InvisibleWinSpawner;
+
 	//References to the the ScoreTextUI.
 	public GameObject scoreUIText;
 
@@ -28,7 +34,7 @@ public class GameManager : MonoBehaviour {
 		Opening,
 		Gameplay,
 		GameOver,
-
+		Winning
 	}
 
 	GameManagerState GMState;
@@ -44,20 +50,22 @@ public class GameManager : MonoBehaviour {
 		switch(GMState)
 		{
 		case GameManagerState.Opening:
-		//Hide Game Over Screen.
-			GameOver.SetActive(false);
-
-		//Set play button visible (ative)
+		
+			//Set play button visible (active)
 			playButton.SetActive(true);
-
+		
+			//Hide Game Over Screen.
+			GameOver.SetActive(false);
 			break;
 		case GameManagerState.Gameplay:
-
+		
 			//RESET the Score Values each gameplay has started.
 			scoreUIText.GetComponent<ss_GameScore>().Score = 0;
 
-		//Hide the play button on the GamePlay state.
+		//Hide the play button in the GamePlay state.
 		playButton.SetActive(false);
+
+	
 
 		//Set the Player visible (active) and Initialize the player lives.
 			playerShip.GetComponent<ss_PlayerControl>().Init();
@@ -66,16 +74,17 @@ public class GameManager : MonoBehaviour {
 			enemy1Spawner.GetComponent<ss_Enemy1Spawner>().ScheduledEnemySpawner(); 
 			enemy2Spawner.GetComponent<ss_Enemy2Spawner>().ScheduledEnemySpawner(); 
 			enemy3Spawner.GetComponent<ss_Enemy3Spawner>().ScheduledEnemySpawner(); 
-
-			//planning to use Boss in game when Boss enters the battle
-			//BossSpawner.GetComponent <ss_BossSpawner>().ScheduleBossSpawner();
-
+			InvisibleWinSpawner.GetComponent<ss_InvisibleWinSpawner>().ScheduledWinColliderSpawner();
+		
 			break;
 		case GameManagerState.GameOver:
+		
 			//Stops all 3 enemy Spawners .
 			enemy1Spawner.GetComponent<ss_Enemy1Spawner>().UnscheduledEnemySpawner();
 			enemy2Spawner.GetComponent<ss_Enemy2Spawner>().UnscheduledEnemySpawner();
 			enemy3Spawner.GetComponent<ss_Enemy3Spawner>().UnscheduledEnemySpawner();
+			InvisibleWinSpawner.GetComponent<ss_InvisibleWinSpawner>().UnScheduledWinColliderSpawner();
+
 			//planning to use Boss: in game when player loses his lifes game restarts.
 			//BossSpawner.GetComponent <ss_BossSpawner>().ScheduleBossSpawner();
 
@@ -85,8 +94,30 @@ public class GameManager : MonoBehaviour {
 		/*Change Game Manager state to Opening State after any number of seconds to
 			Replay the game continously. */
 			Invoke("ChangeToOpeningState", 3f);
+		
 			break;
+
+			//Change Game Manager state to MissionSuiccess
+			//when the player Collides into Win2DColliderBody 
+			//FOR DAX TO MOD for Game Returning Main Menu
+			case GameManagerState.Winning:
+		{
+			// This will show the Winner Sprite Screen.
+			Winner.SetActive(true);
+
+			enemy1Spawner.GetComponent<ss_Enemy1Spawner>().UnscheduledEnemySpawner();
+			enemy2Spawner.GetComponent<ss_Enemy2Spawner>().UnscheduledEnemySpawner();
+			enemy3Spawner.GetComponent<ss_Enemy3Spawner>().UnscheduledEnemySpawner();
+			InvisibleWinSpawner.GetComponent<ss_InvisibleWinSpawner>().UnScheduledWinColliderSpawner();
+
+
 		}
+			break;
+
+			//planning to use Boss in game when Boss enters the battle
+			//BossSpawner.GetComponent <ss_BossSpawner>().ScheduleBossSpawner();
+		}
+
 	}
 
 	//Function to set the game manager state.
@@ -108,5 +139,7 @@ public class GameManager : MonoBehaviour {
 		SetGameManagerState(GameManagerState.Opening);
 
 	}
+
+
 
 }

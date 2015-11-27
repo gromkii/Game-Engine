@@ -11,6 +11,8 @@ using System.Collections;
 
 public class ss_Enemy2Control : MonoBehaviour {
 
+	GameObject GO_ScoreUIText; //Reference to the GameObject TextScore
+
 	public GameObject GO_Explosion; //This is our Explosion Prefab.
 	public AudioClip[] audioClip; // references the SFX for the Enemy2 GameObject
 
@@ -21,6 +23,8 @@ public class ss_Enemy2Control : MonoBehaviour {
 	
 		ss_speed = 2f; // set speed
 
+		//Get the Score Text UI
+		GO_ScoreUIText = GameObject.FindGameObjectWithTag ("ScoreTextTag");
 	}
 	
 	// Update is called once per frame
@@ -55,6 +59,9 @@ public class ss_Enemy2Control : MonoBehaviour {
 
 			//play the Explosion Sound Effect.
 			PlaySound(0);
+
+			//add 100 Points to the Player's score! 
+			GO_ScoreUIText.GetComponent<ss_GameScore>().Score += 100;
 
 			//for testing purposes Temp. comment the line below.
 			Destroy(gameObject); //Destroy the Enemies' ship.

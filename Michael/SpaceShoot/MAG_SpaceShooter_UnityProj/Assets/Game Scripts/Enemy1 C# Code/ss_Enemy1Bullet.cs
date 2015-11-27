@@ -1,4 +1,4 @@
-﻿//part 5 enemy fire mechanics
+﻿//part 5 Enemy1 fire mechanics
 using UnityEngine;
 using System.Collections;
 
@@ -11,7 +11,7 @@ public class ss_Enemy1Bullet : MonoBehaviour {
 
 	void Awake()
 	{
-		ss_speed = 15f;
+		ss_speed = 20f;
 		isReady = false;
 	
 	}

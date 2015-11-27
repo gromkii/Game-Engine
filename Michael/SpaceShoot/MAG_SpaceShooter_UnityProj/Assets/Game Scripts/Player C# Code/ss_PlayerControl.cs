@@ -136,11 +136,8 @@ public class ss_PlayerControl : MonoBehaviour
 			//Update the TextLives UI. 
 			TextLives.text = lives.ToString();
 
-			if(lives == 0)//If our plaer is dead.
+			if(lives == 0)//If our player lives reaches zero.
 			{
-			//!!for testing purposes Temp. comment the line below.!!!!!
-		//	Destroy(gameObject); //Destroy the player's ship.
-
 			//***Change game manager state to game over state.***
 		GO_GameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.GameOver);
 
@@ -148,6 +145,34 @@ public class ss_PlayerControl : MonoBehaviour
 			gameObject.SetActive(false);
 			}
 		}
+
+		//This code below will force the player to exit off screen
+		//when colliding into the GO_Win2DColliderBody!
+		if(col.tag== "WinConditionTag") 
+		   {
+
+			//***Change game manager state to Winning state.***
+			GO_GameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.Winning);
+
+			/* This code will be used for a decoy version of the player object.
+			//This piece of code control the player's movement to leave off screen
+			Vector2 position = gameObject.transform.position;
+			position = new Vector2 (position.x + ss_speed * Time.deltaTime , position.y);
+
+			//Update the invisible collider position.
+			transform.position = position;
+
+			Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0,0)); //0,0
+			
+		
+			
+			//If the enemy went outside the screen  on the LEFT side of screen, then destroy the enemy.
+			if(transform.position.y < min.y)
+			{
+				Destroy(gameObject);
+			}*/
+		}
+
 	}
 
 	//Function to Instantiate of the Explosion.
@@ -162,7 +187,7 @@ public class ss_PlayerControl : MonoBehaviour
 		explosion.transform.position = transform.position;
 
 		//to test the sprite instant destroy after.
-		//Destroy(explosion);
+		Destroy(explosion);
 	}
 
 	void PlaySound(int clip)

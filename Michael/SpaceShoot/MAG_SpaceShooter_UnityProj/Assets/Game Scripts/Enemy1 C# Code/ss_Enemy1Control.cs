@@ -3,7 +3,7 @@
  * Houston Community College
  * Fall 2015
  * MonoDevelop - Unity 5.1.2f1(64-bit))
-This class will be an Added Component to Enemy GameObject for programming Player;'s control 
+This class will be an Added Component to Enemy GameObject for programming User's control 
 movement with the keyboard.
  */
 using UnityEngine;
@@ -11,7 +11,8 @@ using System.Collections;
 
 public class ss_Enemy1Control : MonoBehaviour {
 
-	GameObject GO_ScoreUIText;
+	GameObject GO_ScoreUIText;  //This is our Explosion Prefab.
+
 	public GameObject GO_Explosion; //This is our Explosion Prefab.
 
 	public AudioClip[] audioClip; // references the SFX for the Enemy1 GameObject

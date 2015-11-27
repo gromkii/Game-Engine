@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Game Scripts\AnimatedTexture.cs" />
-     <Compile Include="Assets\Game Scripts\Boss Cod\ss_Boss.cs" />
+     <Compile Include="Assets\Game Scripts\Boss Code\ss_BossSpawner.cs" />
      <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Bullet.cs" />
      <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Control.cs" />
      <Compile Include="Assets\Game Scripts\Enemy1 C# Code\ss_Enemy1Gun.cs" />
@@ -62,6 +62,8 @@
      <Compile Include="Assets\Game Scripts\Not needed\MainMenu.cs" />
      <Compile Include="Assets\Game Scripts\Player C# Code\ss_PlayerBullet.cs" />
      <Compile Include="Assets\Game Scripts\Player C# Code\ss_PlayerControl.cs" />
+     <Compile Include="Assets\Game Scripts\WinConditionCoding\ss_InvisibleWinController.cs" />
+     <Compile Include="Assets\Game Scripts\WinConditionCoding\ss_InvisibleWinSpawner.cs" />
      <Compile Include="Assets\Game Scripts\ss_Destroyer.cs" />
      <Compile Include="Assets\Game Scripts\ss_GameScore.cs" />
  <Reference Include="UnityEngine.UI">

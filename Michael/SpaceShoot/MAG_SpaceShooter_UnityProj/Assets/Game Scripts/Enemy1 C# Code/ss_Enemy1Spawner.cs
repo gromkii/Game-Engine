@@ -40,10 +40,10 @@ left and right edge of the screen.
 		//Instantiate an enemy. this is used for spawning directions.
 		GameObject anEnemy = (GameObject)Instantiate (GO_Enemy1);
 
-		//this is used for Horizontally spawning directions(from the Right to Left).
+		//this is used for Horizontally spawning directions(from the Top to Bottom).
 		anEnemy.transform.position = new Vector2 (max.x, Random.Range(min.y, max.y)); 
 
-		//This is used for Vertically Directions(From the Top to Bottom).
+		//This is used for Vertically Directions(From the Right to Left).
 		//anEnemy.transform.position = new Vector2 (Random.Range(min.x, max.x), max.y)  
 
 		//Schedule when to spawn next enemy.
@@ -59,7 +59,7 @@ left and right edge of the screen.
 			//Picks a Number between 1 and MaxSpawnRAteInSeconds.
 			spawnInNSeconds = Random.Range (1f, maxSpawnRateinSeconds);
 		}
-		else spawnInNSeconds = 1f;
+		else spawnInNSeconds = 4f;
 
 		Invoke ("SpawnEnemy", spawnInNSeconds);
 	}
@@ -77,6 +77,8 @@ left and right edge of the screen.
 	//Function to start enemy spawner.
 	public void ScheduledEnemySpawner()
 	{	
+		//reset spawning for all enemy 1.
+		maxSpawnRateinSeconds = 4f; 
 
 		//start to spawn the enemy once in 'n' seconds and that is it.
 		Invoke ("SpawnEnemy", maxSpawnRateinSeconds);
@@ -84,8 +86,7 @@ left and right edge of the screen.
 		//Increase spawn  rate every 'n' seconds.
 		InvokeRepeating("IncreaseSpawnRate", 0f, 5f);
 
-		//reset spawning for all enemy 1.
-		maxSpawnRateinSeconds = 4f; 
+
 
 	}
 
